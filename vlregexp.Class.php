@@ -1,6 +1,6 @@
 <?php
 
-Class regexp {
+Class vlregexp {
 
 	/**
 	* Validates a person code
@@ -50,6 +50,10 @@ Class regexp {
 
 		// Let us form and return the result
 		return $bSpaces ? $iFirst . ' - ' . $iLast : $iFirst . '-' . $iLast;
+	}
+
+	static public function test() {
+
 	}
 
 }
