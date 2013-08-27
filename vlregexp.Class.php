@@ -54,6 +54,4 @@ Class regexp {
 
 }
 
-var_dump(regexp::lvFormPersonCode($argv[1], $argv[2]));
-
 ?>
