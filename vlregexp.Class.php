@@ -52,8 +52,25 @@ Class vlregexp {
 		return $bSpaces ? $iFirst . ' - ' . $iLast : $iFirst . '-' . $iLast;
 	}
 
-	static public function test() {
+	/**
+	* Split URL sectors into array
+	* @param string
+	* @return array
+	*/
+	static public function gsplitURLSectors( $sUrl ) {
 
+		// Trim input
+		$sUrl = trim($sUrl, ' ');
+
+		// Initiate temp array / unset is useless becouse function contents are unset automatically afterwards
+		$aTmp = array();
+
+		// If full url given remove root
+		preg_match_all('/[^ \#\?]*/', preg_replace('/http[^ \/]*\/{2}[^ \/]*\//', '', $sUrl), $aTmp);
+		$sUrl = $aTmp[0][0];
+
+		// Return exploded array
+		return explode('/', $sUrl);
 	}
 
 }
