@@ -3,9 +3,26 @@
 Class vlregexp {
 
 	/**
+	* Format a phone number in LV
+	* @param string
+	* @return string
+	*/
+	static public function lvFormatPhoneNumber( $sPhone ) {
+		
+		// First trim the input
+		$sPhone = trim($sPhone, ' ');
+		
+		// Remove any other symbol that is not a number
+		$sPhone = preg_replace('/[^0-9]/', '', $sPhone);
+		
+		// Now let us just seperate input
+		return '+' . substr($sPhone, 0, 3) . ' ' . substr($sPhone, 3, strlen($sPhone));
+	}
+	
+	/**
 	* Validates a person code
 	* @param string
-	* @result bool
+	* @return bool
 	*/
 	static public function lvValidatePersonCode( $sInput ) {
 		
@@ -16,7 +33,7 @@ Class vlregexp {
 		$sInput = str_replace(' ', '', $sInput);
 
 		// Now let's use preg_match_all as it proves to be the fastest one in average use cases
-		return (bool) preg_match_all('/[0-9]{6}\-[0-9]{5}/', $sInput, $aTmp);
+		return (bool)preg_match_all('/[0-9]{6}\-[0-9]{5}/', $sInput, $aTmp);
 	}
 
 	/**
